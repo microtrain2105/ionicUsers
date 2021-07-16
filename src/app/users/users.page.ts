@@ -10,7 +10,7 @@ import { User } from '../user.model';
   styleUrls: ['./users.page.scss'],
 })
 export class UsersPage implements OnInit {
-  // user:User = new User();
+  user:User = new User();
   users:User;
 
   constructor(
@@ -39,4 +39,11 @@ export class UsersPage implements OnInit {
     );
   }
 
+  deleteUser(id:string): void {
+    if (confirm("Are you sure to delete " + this.user.username)) {
+      this.usersService.deleteUser(id).subscribe(
+        () => { this.router.navigate(['/users']) }
+    );
+    }
+  }  
 }
